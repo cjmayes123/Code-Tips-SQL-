@@ -1,0 +1,26 @@
+#assuming that we already connected Python and R to our database
+#the most straightforward way of using query in, say Python
+#is to copy and paste it as a string, then call pandas.read_sql():
+
+def getSQL(sql_query, 
+           place_holder_str,
+           replace_place_holder_with,
+           database_con):
+    '''
+    Args:
+        sql_query: sql query file 
+        place_holder_str: string in the original sql query that is to be replaced
+        replace_place_holder_with: real values that should be put in 
+        database_con: connection to the database 
+    '''
+    
+    sqlFile = open(sql_query, 'r')
+    sqlQuery = sqlFile.read()
+    
+    sqlQuery = sqlQuery.replace(place_holder_str, replace_place_holder_with)    
+             
+    df = pandas.read_sql_query(sqlQuery, database_con)          
+                
+    database_con.close()
+
+    return df  
