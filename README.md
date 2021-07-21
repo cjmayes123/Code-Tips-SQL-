@@ -1,2 +1,2 @@
 # Tricks
-Random Tricks for safe keeping
+Random Tricks for safe keeping - Predominanetely SQL, occasional Python.
