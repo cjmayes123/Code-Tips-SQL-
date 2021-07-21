@@ -1,0 +1,14 @@
+/** ROW_NUMBER() to select the top 3 **/
+SELECT 
+  rownumber, 
+  id_var, 
+  num_var
+FROM 
+(
+  SELECT 
+    ROW_NUMBER() OVER (PARTITION BY id_var ORDER BY num_var DESC) AS rownumber, 
+    tab.*
+  FROM cur_table            tab    
+)    dat
+WHERE rownumber <= 3
+ORDER BY id_var, rownumber
